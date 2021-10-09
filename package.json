@@ -1,0 +1,22 @@
+{
+  "name": "@altipla-consulting/mailgun-events",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Receive mailgun events and send them to PubSub for processing.",
+  "scripts": {
+    "test": ""
+  },
+  "files": [
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altipla-consulting/mailgun-events.git"
+  },
+  "author": "Altipla Consulting",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/altipla-consulting/mailgun-events/issues"
+  },
+  "homepage": "https://github.com/altipla-consulting/mailgun-events#readme"
+}
