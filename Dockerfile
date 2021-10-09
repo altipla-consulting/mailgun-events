@@ -1,5 +1,5 @@
 
-FROM golang:1.11 as builder
+FROM golang:1.17 as builder
 
 WORKDIR /opt/ac
 COPY . .
