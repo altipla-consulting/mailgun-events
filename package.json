@@ -1,7 +1,7 @@
 {
   "name": "@altipla-consulting/mailgun-events",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Receive mailgun events and send them to PubSub for processing.",
   "scripts": {
     "test": ""
