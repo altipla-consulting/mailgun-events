@@ -35,6 +35,8 @@ func WebhookHandler(domain, topic string) routing.Handler {
 			return errors.Trace(err)
 		}
 
+		log.Infof("%#v", payload)
+
 		mg := mailgun.NewMailgun(domain, os.Getenv("MAILGUN_KEY"))
 		signature := mailgun.Signature{
 			TimeStamp: payload.Signature.TimeStamp,
@@ -51,6 +53,7 @@ func WebhookHandler(domain, topic string) routing.Handler {
 		if err := json.Unmarshal(payload.EventData, tags); err != nil {
 			return errors.Trace(err)
 		}
+		log.Infof("%#v", tags)
 
 		attrs := []pubsub.PublishOption{}
 		for _, name := range tags.Tags {
