@@ -35,8 +35,6 @@ func WebhookHandler(domain, topic string) routing.Handler {
 			return errors.Trace(err)
 		}
 
-		log.Infof("%#v", payload)
-
 		mg := mailgun.NewMailgun(domain, os.Getenv("MAILGUN_KEY"))
 		signature := mailgun.Signature{
 			TimeStamp: payload.Signature.TimeStamp,
@@ -46,14 +44,13 @@ func WebhookHandler(domain, topic string) routing.Handler {
 		if verified, err := mg.VerifyWebhookSignature(signature); err != nil {
 			return errors.Trace(err)
 		} else if !verified {
-			return errors.Wrapf(err, "failed signature verification: timestamp <%s>, token <%s>, signature <%s>", signature.TimeStamp, signature.Token, signature.Signature)
+			return routing.Unauthorizedf("failed signature verification: timestamp <%s>, token <%s>, signature <%s>", signature.TimeStamp, signature.Token, signature.Signature)
 		}
 
 		tags := new(mailgunEventTags)
 		if err := json.Unmarshal(payload.EventData, tags); err != nil {
 			return errors.Trace(err)
 		}
-		log.Infof("%#v", tags)
 
 		attrs := []pubsub.PublishOption{}
 		for _, name := range tags.Tags {
