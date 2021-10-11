@@ -15,4 +15,4 @@ FROM gcr.io/distroless/base
 
 COPY --from=builder /go/bin/mailgun-events .
 
-ENTRYPOINT [ "./mailgun-events" ]
+CMD [ "./mailgun-events" ]
