@@ -24,7 +24,7 @@ func run() error {
 	}
 
 	r := cloudrun.Web()
-	r.Post("/webhooks", WebhookHandler(flagDomain, flagTopic))
+	r.Post("/webhook", WebhookHandler(flagDomain, flagTopic))
 	r.Serve()
 
 	return nil
